@@ -15,7 +15,7 @@ if len(sys.argv) > 1:
     for arg in sys.argv:
         if arg == '-useServer':
             useServer = 1
-        elif arg == '-hideOutput'
+        elif arg == '-hideOutput':
             hideOutput = 1
 
 # Board Setup
