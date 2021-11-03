@@ -1,4 +1,5 @@
 from gpiozero import Servo
+fromt time import sleep
 # Board Setup
 servo = Servo(27)
 
