@@ -18,7 +18,7 @@ if len(sys.argv) > 1:
             hideOutput = 1
 
 # Board Setup
-servo = Servo(13)
+servo = Servo(27)
 val = 0
 pin = 11
 GPIO.setmode(GPIO.BOARD)
