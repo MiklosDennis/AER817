@@ -6,7 +6,6 @@ import Calibration
 import RPi.GPIO as GPIO
 import sys
 
-time.sleep(10)
 # Setup Parameters
 useServer = 0
 hideOutput = 0 
@@ -66,7 +65,7 @@ def read_data():
         if distance > 500:
             continue
         
-        if hideOutput:
+        if not hideOutput:
             print('P{:.2f},'.format(rpy[1]*d2r)\
                   +'R{:.2f},'.format(rpy[0]*d2r)\
                   +'Y{:.2f}'.format(gyaw*d2r))
