@@ -54,7 +54,7 @@ def read_data():
     while True:
         time.sleep(0.5)
         servo.value = val
-        val = val + 0.1
+        val = val + 0.01
         counter = ser.inWaiting()
         if counter > 8:
             bytes_serial = ser.read(9)
