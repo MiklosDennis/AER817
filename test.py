@@ -4,7 +4,10 @@ import math
 import socket
 import Calibration
 import RPi.GPIO as GPIO
+import sys
 
+print(sys.argv)
+time.sleep(10)
 # Setup Parameters
 useServer = 0
 
