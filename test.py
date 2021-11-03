@@ -30,7 +30,6 @@ if useServer:
     TCP_IP = '192.168.2.39'
     TCP_PORT = 5045
     BUFFER_SIZE = 32
-    val = 0
 
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     
@@ -51,6 +50,7 @@ def read_data():
     distance = 0
     d2r = 180/math.pi
     gyaw = 0
+    val = 0
     while True:
         time.sleep(0.5)
         servo.value = val
