@@ -30,8 +30,9 @@ if useServer:
     # If succesful connection turn on led
     GPIO.output(pin,1)
     
-    ser = serial.Serial(port='/dev/ttyS0'\
-                        ,baudrate = 115200)
+# Serial Port Initialization
+ser = serial.Serial(port='/dev/ttyS0'\
+                    ,baudrate = 115200)
 
 def read_data():
     count = 0
