@@ -9,10 +9,14 @@ import sys
 print(sys.argv[1])
 time.sleep(10)
 # Setup Parameters
-if sys.argv[1] == '-useServer':
-    useServer = 1
-else:
-    useServer = 0
+useServer = 0
+hideOutput = 0 
+if len(sys.argv) > 1:
+    for arg in sys.argv:
+        if arg == '-useServer':
+            useServer = 1
+        elif arg == '-hideOutput'
+            hideOutput = 1
 
 # Board Setup
 pin = 11
@@ -61,8 +65,9 @@ def read_data():
         # Calculate coordinates
         if distance > 500:
             continue
-
-        print('P{:.2f},'.format(rpy[1]*d2r)\
+        
+        if hideOutput:
+            print('P{:.2f},'.format(rpy[1]*d2r)\
                   +'R{:.2f},'.format(rpy[0]*d2r)\
                   +'Y{:.2f}'.format(gyaw*d2r))
         
