@@ -18,7 +18,7 @@ if len(sys.argv) > 1:
             hideOutput = 1
 
 # Board Setup
-servo = Servo(13)
+servo = Servo(27)
 pin = 11
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin,GPIO.OUT)
@@ -50,7 +50,7 @@ def read_data():
     distance = 0
     d2r = 180/math.pi
     gyaw = 0
-    val = 0
+    val = -1
     while True:
         time.sleep(0.5)
         servo.value = val
