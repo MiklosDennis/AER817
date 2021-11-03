@@ -23,6 +23,7 @@ pin = 11
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin,GPIO.OUT)
 GPIO.output(pin,0)
+GPIO.setwarnings(False)
 
 # Server
 if useServer:
