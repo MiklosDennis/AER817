@@ -19,7 +19,6 @@ if len(sys.argv) > 1:
 
 # Board Setup
 servo = Servo(13)
-val = 0
 pin = 11
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin,GPIO.OUT)
@@ -31,6 +30,7 @@ if useServer:
     TCP_IP = '192.168.2.39'
     TCP_PORT = 5045
     BUFFER_SIZE = 32
+    val = 0
 
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     
