@@ -6,10 +6,13 @@ import Calibration
 import RPi.GPIO as GPIO
 import sys
 
-print(sys.argv)
+print(sys.argv[1])
 time.sleep(10)
 # Setup Parameters
-useServer = 0
+if sys.argv[1] == '-useServer':
+    useServer = 1
+else:
+    useServer = 0
 
 # Board Setup
 pin = 11
