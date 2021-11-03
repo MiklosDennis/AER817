@@ -5,6 +5,7 @@ import socket
 import Calibration
 import RPi.GPIO as GPIO
 import sys
+from gpiozero import Servo
 
 # Setup Parameters
 useServer = 0
@@ -17,6 +18,8 @@ if len(sys.argv) > 1:
             hideOutput = 1
 
 # Board Setup
+servo = Servo(13)
+val = 0
 pin = 11
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin,GPIO.OUT)
@@ -49,7 +52,9 @@ def read_data():
     d2r = 180/math.pi
     gyaw = 0
     while True:
-        time.sleep(0.001)
+        time.sleep(0.5)
+        servo.value = val
+        val = val + 0.1
         counter = ser.inWaiting()
         if counter > 8:
             bytes_serial = ser.read(9)
