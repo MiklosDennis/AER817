@@ -5,6 +5,9 @@ import socket
 import Calibration
 import RPi.GPIO as GPIO
 
+# Setup Parameters
+useServer = 0
+
 # Board Setup
 pin = 11
 GPIO.setmode(GPIO.BOARD)
@@ -12,21 +15,23 @@ GPIO.setup(pin,GPIO.OUT)
 GPIO.output(pin,0)
 
 # Server
-TCP_IP = '192.168.2.39'
-TCP_PORT = 5045
-BUFFER_SIZE = 32
+if useServer:
+    TCP_IP = '192.168.2.39'
+    TCP_PORT = 5045
+    BUFFER_SIZE = 32
 
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-try:
-    s.connect((TCP_IP,TCP_PORT))
-except:
-    print('Connection Failed')
-
-# If succesful connection turn on led
-GPIO.output(pin,1)
-
-ser = serial.Serial(port='/dev/ttyS0'\
-                    ,baudrate = 115200)
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    
+    try:
+        s.connect((TCP_IP,TCP_PORT))
+    except:
+        print('Connection Failed')
+    
+    # If succesful connection turn on led
+    GPIO.output(pin,1)
+    
+    ser = serial.Serial(port='/dev/ttyS0'\
+                        ,baudrate = 115200)
 
 def read_data():
     count = 0
@@ -45,8 +50,6 @@ def read_data():
                 ser.reset_input_buffer()
 
         gyaw,rpy = Calibration.calib(gyaw,0)
-
-        
             
         # Calculate coordinates
         if distance > 500:
@@ -71,12 +74,13 @@ def read_data():
         text = '{:<32s}'.format(text)
         #text = str(x)+','+str(y)+','+str(z) 
         
-        try:
-            s.send(bytes(text,'utf-8'))
-        except:
-            print('Interuppted Connection')
-            GPIO.output(pin,0)
-            break
+        if useServer:
+            try:
+                s.send(bytes(text,'utf-8'))
+            except:
+                print('Interuppted Connection')
+                GPIO.output(pin,0)
+                break
 
             
 
